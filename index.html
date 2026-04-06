@@ -4,469 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BatteryTrack Pro — by Saad Cheema</title>
+    <title>BatteryTrack Pro — Battery Shop Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #0a0f1e;
-            --card: #111827;
-            --border: rgba(255, 255, 255, 0.07);
-            --text: #f1f5f9;
-            --muted: #64748b;
-            --accent: #f59e0b;
-            --blue: #1d4ed8;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-        }
-
-        /* NAV */
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 60px;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            background: rgba(10, 15, 30, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .nav-logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-logo-icon i {
-            color: #fff;
-            font-size: 17px;
-        }
-
-        .nav-logo-text {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--text);
-        }
-
-        .nav-logo-sub {
-            font-size: 11px;
-            color: var(--muted);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, #d97706, #f59e0b);
-            color: #fff;
-            padding: 10px 22px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .nav-cta:hover {
-            opacity: 0.9;
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 100px 20px 80px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: #f59e0b;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--muted);
-            line-height: 1.7;
-            margin-bottom: 40px;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d97706, #f59e0b);
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
-        }
-
-        .btn-ghost {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text);
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .version-note {
-            margin-top: 16px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        /* FEATURES */
-        .section {
-            padding: 80px 60px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 14px;
-        }
-
-        .section-sub {
-            font-size: 16px;
-            color: var(--muted);
-            margin-bottom: 48px;
-            max-width: 500px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            transition: border-color 0.2s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(245, 158, 11, 0.3);
-        }
-
-        .feature-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            font-size: 18px;
-        }
-
-        .feature-icon.amber {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
-        }
-
-        .feature-icon.blue {
-            background: rgba(29, 78, 216, 0.15);
-            color: #60a5fa;
-        }
-
-        .feature-icon.green {
-            background: rgba(22, 163, 74, 0.15);
-            color: #4ade80;
-        }
-
-        .feature-icon.purple {
-            background: rgba(124, 58, 237, 0.15);
-            color: #a78bfa;
-        }
-
-        .feature-icon.red {
-            background: rgba(220, 38, 38, 0.15);
-            color: #f87171;
-        }
-
-        .feature-icon.teal {
-            background: rgba(20, 184, 166, 0.15);
-            color: #2dd4bf;
-        }
-
-        .feature-card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* STATS */
-        .stats {
-            background: var(--card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 60px;
-        }
-
-        .stats-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-val {
-            font-size: 40px;
-            font-weight: 900;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: var(--muted);
-            margin-top: 4px;
-        }
-
-        /* DOWNLOAD */
-        .download-section {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(29, 78, 216, 0.08));
-            border: 1px solid rgba(245, 158, 11, 0.15);
-            border-radius: 24px;
-            padding: 60px;
-            text-align: center;
-            margin: 0 60px 80px;
-        }
-
-        .download-section h2 {
-            font-size: 36px;
-            font-weight: 900;
-            margin-bottom: 12px;
-        }
-
-        .download-section p {
-            color: var(--muted);
-            font-size: 16px;
-            margin-bottom: 32px;
-        }
-
-        .download-info {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .download-info span {
-            font-size: 13px;
-            color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .download-info i {
-            color: var(--accent);
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-logo {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 16px 20px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 60px 20px 50px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .section {
-                padding: 60px 20px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                padding: 40px 20px;
-            }
-
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .download-section {
-                margin: 0 20px 60px;
-                padding: 40px 24px;
-            }
-
-            footer {
-                padding: 30px 20px;
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- NAV -->
     <nav>
         <a href="/" class="nav-logo">
             <div class="nav-logo-icon"><i class="fa fa-bolt"></i></div>
@@ -476,31 +22,26 @@
             </div>
         </a>
         <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#download">Download</a>
-            <a href="mailto:muhammadsaadc49@gmail.com">Support</a>
+            <a href="/">Home</a>
+            <a href="features.html">Features</a>
+            <a href="updates.html">Updates</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <a href="#download" class="nav-cta"><i class="fa fa-download"></i> Download Free</a>
+        <a href="contact.html" class="nav-cta">Get Access</a>
     </nav>
 
-    <!-- HERO -->
     <div class="hero">
-        <div class="hero-badge"><i class="fa fa-bolt"></i> Version 6.0 — Now Available</div>
+        <div class="hero-badge"><i class="fa fa-bolt"></i> Version 6.0 — Latest</div>
         <h1>Manage Your Battery<br>Shop <span>Smarter</span></h1>
         <p>Complete inventory management for battery shops. Track sales, warranties, customers, and returns — all in one
             desktop app.</p>
         <div class="hero-btns">
-            <a href="download/BatteryTrackPro_Setup_v6.0.exe" class="btn-primary" download>
-                <i class="fa fa-download"></i> Download v6.0
-            </a>
-            <a href="#features" class="btn-ghost">
-                <i class="fa fa-circle-play"></i> See Features
-            </a>
+            <a href="contact.html" class="btn-primary"><i class="fa fa-envelope"></i> Get Access</a>
+            <a href="features.html" class="btn-ghost"><i class="fa fa-list"></i> See Features</a>
         </div>
-        <div class="version-note">Windows 10/11 · Free · No subscription</div>
+        <div class="version-note">Windows 10/11 · Access by request only</div>
     </div>
 
-    <!-- STATS -->
     <div class="stats">
         <div class="stats-inner">
             <div>
@@ -512,85 +53,72 @@
                 <div class="stat-label">Sales Records</div>
             </div>
             <div>
-                <div class="stat-val">Free</div>
-                <div class="stat-label">No Monthly Fee</div>
-            </div>
-            <div>
                 <div class="stat-val">Auto</div>
                 <div class="stat-label">Update System</div>
+            </div>
+            <div>
+                <div class="stat-val">24/7</div>
+                <div class="stat-label">Support</div>
             </div>
         </div>
     </div>
 
-    <!-- FEATURES -->
-    <div class="section" id="features">
-        <div class="section-label">Features</div>
-        <div class="section-title">Everything your shop needs</div>
-        <div class="section-sub">Built specifically for battery shops — from sales to warranty returns.</div>
+    <div class="section">
+        <div class="section-label">Why BatteryTrack Pro</div>
+        <div class="section-title">Built for battery shops</div>
+        <div class="section-sub">Every feature designed specifically for how battery shops work.</div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon amber"><i class="fa fa-cart-shopping"></i></div>
                 <h3>Sales Management</h3>
-                <p>Record sales with product, customer, quantity, discount, and payment method. Generate professional
-                    receipts instantly.</p>
+                <p>Record sales with product, customer, quantity, discount, and payment method. Professional receipts
+                    instantly.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon blue"><i class="fa fa-box"></i></div>
                 <h3>Inventory Tracking</h3>
-                <p>Track stock levels with low-stock alerts. Bulk upload products via text file. Category management
-                    included.</p>
+                <p>Track stock levels with low-stock alerts. Bulk upload products. Category management included.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon green"><i class="fa fa-shield-halved"></i></div>
                 <h3>Warranty Returns</h3>
-                <p>Process warranty returns with replacement tracking. Stock automatically updated. Price difference
-                    shown as due amount.</p>
+                <p>Process warranty returns with replacement tracking. Stock auto-updated. Price difference shown as
+                    due.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon purple"><i class="fa fa-users"></i></div>
                 <h3>Customer Management</h3>
-                <p>Track customer purchase history, credit balance, and warranty status. Full customer profile with all
-                    transactions.</p>
+                <p>Track purchase history, credit balance, and warranty status per customer.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon red"><i class="fa fa-chart-line"></i></div>
-                <h3>Reports & Analytics</h3>
-                <p>Revenue, profit, best sellers, monthly trends. Export sales report to PDF with one click.</p>
+                <h3>Reports & PDF Export</h3>
+                <p>Revenue, profit, best sellers, monthly trends. Export to PDF with one click.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon teal"><i class="fa fa-rotate"></i></div>
                 <h3>Auto Updates</h3>
-                <p>App checks for updates automatically. Download new version directly from this website — no manual
-                    searching.</p>
+                <p>App notifies you when a new version is available. Download directly from this site.</p>
             </div>
         </div>
     </div>
 
-    <!-- DOWNLOAD -->
-    <div class="download-section" id="download">
-        <h2>Download BatteryTrack Pro</h2>
-        <p>Free desktop app for Windows. Install and start managing your shop in minutes.</p>
-        <a href="download/BatteryTrackPro_Setup_v6.0.exe" class="btn-primary" style="display:inline-flex;" download>
-            <i class="fa fa-download"></i> Download v6.0 — Free
-        </a>
-        <div class="download-info">
-            <span><i class="fa fa-windows"></i> Windows 10 / 11</span>
-            <span><i class="fa fa-hard-drive"></i> ~27 MB</span>
-            <span><i class="fa fa-shield-halved"></i> Safe & Secure</span>
-            <span><i class="fa fa-user"></i> Publisher: Saad Cheema</span>
-        </div>
+    <div class="cta-section">
+        <h2>Ready to get started?</h2>
+        <p>Contact us to get access to BatteryTrack Pro for your shop.</p>
+        <a href="contact.html" class="btn-primary"><i class="fa fa-envelope"></i> Contact to Get Access</a>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-logo"><i class="fa fa-bolt" style="color:#f59e0b;margin-right:6px;"></i> BatteryTrack Pro
         </div>
         <div class="footer-links">
-            <a href="mailto:muhammadsaadc49@gmail.com">Support</a>
-            <a href="#download">Download</a>
-            <a href="#features">Features</a>
+            <a href="/">Home</a>
+            <a href="features.html">Features</a>
+            <a href="updates.html">Updates</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div class="footer-copy">© 2026 Saad Cheema · saadcheemaims.vercel.app</div>
+        <div class="footer-copy">© 2026 Saad Cheema</div>
     </footer>
 
 </body>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates — BatteryTrack Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fa fa-bolt"></i></div>
+            <div>
+                <div class="nav-logo-text">BatteryTrack Pro</div>
+                <div class="nav-logo-sub">by Saad Cheema</div>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="features.html">Features</a>
+            <a href="updates.html" style="color:#f59e0b;">Updates</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="contact.html" class="nav-cta">Get Access</a>
+    </nav>
+
+    <div class="page-hero">
+        <div class="section-label">Updates</div>
+        <h1>Version History</h1>
+        <p>Download the latest version if you already have access.</p>
+    </div>
+
+    <!-- Access Gate -->
+    <div class="section" style="max-width:600px;">
+        <div class="access-gate" id="gate">
+            <div class="gate-icon"><i class="fa fa-lock"></i></div>
+            <h3>Client Access Required</h3>
+            <p>Enter your access code to download updates. Don't have one? <a href="contact.html">Contact us</a>.</p>
+            <div class="gate-form">
+                <input type="password" id="access-code" placeholder="Enter access code" class="gate-input">
+                <button onclick="checkAccess()" class="btn-primary"
+                    style="width:100%;justify-content:center;margin-top:10px;">
+                    <i class="fa fa-unlock"></i> Unlock Downloads
+                </button>
+            </div>
+            <div id="gate-error" style="color:#f87171;font-size:13px;margin-top:10px;display:none;">Invalid access code.
+                <a href="contact.html">Contact support</a>.</div>
+        </div>
+
+        <div id="downloads" style="display:none;">
+            <div class="update-card latest">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
+                    <div>
+                        <span class="badge-latest">Latest</span>
+                        <h3 style="font-size:20px;font-weight:800;margin-top:8px;">Version 6.0</h3>
+                        <div style="font-size:13px;color:var(--muted);margin-top:2px;">April 2026</div>
+                    </div>
+                    <a href="https://github.com/saadcheema6242/saadcheemaims/releases/download/v6.0/BatteryTrackPro_Setup_v6.0.exe"
+                        class="btn-primary" style="font-size:13px;padding:10px 20px;">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+                <ul class="changelog">
+                    <li><i class="fa fa-check"></i> Warranty return fix — replacement stock now correctly deducted</li>
+                    <li><i class="fa fa-check"></i> Replacement sale appears in sales list with badge</li>
+                    <li><i class="fa fa-check"></i> Price difference shown as due amount on replacement</li>
+                    <li><i class="fa fa-check"></i> Dark mode as default theme</li>
+                    <li><i class="fa fa-check"></i> Auto-update notification system</li>
+                    <li><i class="fa fa-check"></i> Improved PDF export spacing</li>
+                    <li><i class="fa fa-check"></i> Publisher: Saad Cheema — saadcheemaims.vercel.app</li>
+                </ul>
+            </div>
+
+            <div class="update-card">
+                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
+                    <div>
+                        <h3 style="font-size:18px;font-weight:700;">Version 5.0</h3>
+                        <div style="font-size:13px;color:var(--muted);margin-top:2px;">March 2026</div>
+                    </div>
+                </div>
+                <ul class="changelog">
+                    <li><i class="fa fa-check"></i> Initial release with full inventory management</li>
+                    <li><i class="fa fa-check"></i> Sales, customers, warranty, returns</li>
+                    <li><i class="fa fa-check"></i> PDF export, reports, categories</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo"><i class="fa fa-bolt" style="color:#f59e0b;margin-right:6px;"></i> BatteryTrack Pro
+        </div>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="features.html">Features</a>
+            <a href="updates.html">Updates</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-copy">© 2026 Saad Cheema</div>
+    </footer>
+
+    <script>
+        // Simple client-side access code — change this to whatever you want
+        const ACCESS_CODE = 'btp2026';
+
+        function checkAccess() {
+            const code = document.getElementById('access-code').value.trim();
+            if (code === ACCESS_CODE) {
+                document.getElementById('gate').style.display = 'none';
+                document.getElementById('downloads').style.display = 'block';
+                localStorage.setItem('btp-access', '1');
+            } else {
+                document.getElementById('gate-error').style.display = 'block';
+            }
+        }
+
+        // Auto-unlock if already accessed
+        if (localStorage.getItem('btp-access') === '1') {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('downloads').style.display = 'block';
+        }
+
+        document.getElementById('access-code').addEventListener('keydown', e => {
+            if (e.key === 'Enter') checkAccess();
+        });
+    </script>
+
+</body>
+
+</html>
